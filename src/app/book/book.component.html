@@ -1,0 +1,11 @@
+<input type="text" [(ngModel)]="bookName" placeholder="Book Name" />
+<input type="text" [(ngModel)]="bookPrice" placeholder="Book Price" />
+<input type="text" [(ngModel)]="authorName" placeholder="Author Name" />
+<button (click)="onSubmit()">Submit</button>
+<div *ngFor="let book of books">
+    <p>Book Id: {{book.bookId}}</p>
+    <p>Book Name: {{book.bookName}}</p>
+    <p>Book Price: {{book.bookPrice}}</p>
+    <p>Author Name: {{book.authorName}}</p>
+    <br />
+</div>
