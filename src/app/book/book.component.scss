@@ -1,0 +1,20 @@
+.book {
+    background-color: white;
+    border-radius: 5%;
+    padding: 1%;
+}
+
+.book ::after {
+    box-shadow: 10px 10px 10px;
+    opacity: 0;
+    transition-property: opacity;
+    transition-duration: 1s;
+}
+
+.book :hover ::after {
+    opacity: 1;
+}
+
+.book-text {
+    font-size: 2rem;
+}

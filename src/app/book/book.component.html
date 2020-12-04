@@ -1,11 +1,56 @@
-<input type="text" [(ngModel)]="bookName" placeholder="Book Name" />
-<input type="text" [(ngModel)]="bookPrice" placeholder="Book Price" />
-<input type="text" [(ngModel)]="authorName" placeholder="Author Name" />
-<button (click)="onSubmit()">Submit</button>
-<div *ngFor="let book of books">
-    <p>Book Id: {{book.bookId}}</p>
-    <p>Book Name: {{book.bookName}}</p>
-    <p>Book Price: {{book.bookPrice}}</p>
-    <p>Author Name: {{book.authorName}}</p>
-    <br />
+<form>
+    <div class="row">
+        <div class="three columns offset-by-three column">
+            <label for="bookName">Book Name</label>
+            <input
+                type="text"
+                name="bookName"
+                [(ngModel)]="bookName"
+                placeholder="Book Name"
+                class="u-full-width"
+            />
+        </div>
+
+        <div class="three columns">
+            <label for="bookPrice">Book Price</label>
+            <input
+                name="bookPrice"
+                type="text"
+                [(ngModel)]="bookPrice"
+                placeholder="Book Price"
+                class="u-full-width"
+            />
+        </div>
+    </div>
+    <div class="row">
+        <div class="one-half column offset-by-three column">
+            <label for="authorName">Author Name</label>
+            <input
+                type="text"
+                name="authorName"
+                [(ngModel)]="authorName"
+                placeholder="Author Name"
+                class="u-full-width"
+            />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="six columns offset-by-three column">
+            <input
+                type="submit"
+                (click)="onSubmit()"
+                class="button-primary u-full-width"
+                value="Submit"
+                style="margin-top: 3%"
+            />
+        </div>
+    </div>
+</form>
+<div *ngFor="let book of books" class="row">
+    <div class="book offset-by-three column six columns">
+        <h2>{{ book.bookId }}. {{ book.bookName }}</h2>
+        <p class="one-half column book-text">Price: {{ book.bookPrice }}</p>
+        <p class="one-half column book-text">By {{ book.authorName }}</p>
+    </div>
 </div>
