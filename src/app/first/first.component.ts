@@ -8,8 +8,8 @@ import { TestService } from '../test/test.service';
 })
 export class FirstComponent implements OnInit {
     testString: string;
-    inputString: string;
-    title = 'Some Text';
+    inputString = 'hi';
+    titleText = 'Some Text';
 
     constructor(private testService: TestService) {}
 

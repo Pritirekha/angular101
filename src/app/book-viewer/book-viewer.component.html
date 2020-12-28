@@ -1,0 +1,10 @@
+<div class="row">
+    <div
+        class="book offset-by-three column six columns"
+        (click)="whenClicked.emit(book)"
+    >
+        <h2>{{ book.bookId }}. {{ book.bookName }}</h2>
+        <p class="one-half column book-text">Price: {{ book.bookPrice }}</p>
+        <p class="one-half column book-text">By {{ book.authorName }}</p>
+    </div>
+</div>

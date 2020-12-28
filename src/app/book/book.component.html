@@ -1,24 +1,25 @@
-<form>
+<form [formGroup]="bookForm">
     <div class="row">
         <div class="three columns offset-by-three column">
             <label for="bookName">Book Name</label>
             <input
                 type="text"
                 name="bookName"
-                [(ngModel)]="bookName"
+                formControlName="bookName"
                 placeholder="Book Name"
                 class="u-full-width"
+                required
             />
         </div>
-
         <div class="three columns">
             <label for="bookPrice">Book Price</label>
             <input
                 name="bookPrice"
-                type="text"
-                [(ngModel)]="bookPrice"
+                type="number"
+                formControlName="bookPrice"
                 placeholder="Book Price"
                 class="u-full-width"
+                required
             />
         </div>
     </div>
@@ -28,9 +29,10 @@
             <input
                 type="text"
                 name="authorName"
-                [(ngModel)]="authorName"
+                formControlName="authorName"
                 placeholder="Author Name"
                 class="u-full-width"
+                required
             />
         </div>
     </div>
@@ -40,17 +42,36 @@
             <input
                 type="submit"
                 (click)="onSubmit()"
-                class="button-primary u-full-width"
+                [ngClass]="
+                    !bookForm.valid
+                        ? 'u-full-width'
+                        : 'button-primary u-full-width'
+                "
                 value="Submit"
                 style="margin-top: 3%"
+                [disabled]="!bookForm.valid"
             />
         </div>
     </div>
 </form>
-<div *ngFor="let book of books" class="row">
-    <div class="book offset-by-three column six columns">
-        <h2>{{ book.bookId }}. {{ book.bookName }}</h2>
-        <p class="one-half column book-text">Price: {{ book.bookPrice }}</p>
-        <p class="one-half column book-text">By {{ book.authorName }}</p>
-    </div>
+<div *ngFor="let book of books$ | async">
+    <app-book-viewer
+        [book]="book"
+        (whenClicked)="whenClicked($event)"
+    ></app-book-viewer>
 </div>
+<h2
+    style="text-align: center; color: grey"
+    *ngIf="books$ && (books$ | async) && (books$ | async).length === 0"
+>
+    You have no books yet. Try adding one!
+</h2>
+<p
+    #test
+    [ngClass]="{
+        'u-pull-right': (books$ | async) && (books$ | async).length > 1,
+        'u-pull-left': (books$ | async) && (books$ | async).length <= 1
+    }"
+>
+    Hello
+</p>
